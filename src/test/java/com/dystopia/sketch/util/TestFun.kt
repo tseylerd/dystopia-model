@@ -1,4 +1,4 @@
-package sketch.util
+package com.dystopia.sketch.util
 
 import com.dystopia.model.TransformingTraverser
 import com.dystopia.model.introspection.sketch.SketchIntrospector

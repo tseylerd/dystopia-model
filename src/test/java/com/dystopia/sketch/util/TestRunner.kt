@@ -1,4 +1,4 @@
-package sketch.util
+package com.dystopia.sketch.util
 
 import com.dystopia.model.sketch.util.UniqueIdGenerator
 import org.junit.runner.notification.RunNotifier

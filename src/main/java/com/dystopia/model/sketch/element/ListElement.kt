@@ -7,10 +7,10 @@ import com.dystopia.model.util.Ref
 open class ListElement(children: Array<SketchElement>): AbstractListElement(children) {
     private var identifier: Ref<Identifier>? = null
 
-    override fun sameAs(element: SketchElement): Boolean {
-        if (element !is ListElement) return false
+    override fun sameAs(another: SketchElement): Boolean {
+        if (another !is ListElement) return false
         val myIdentifier = identifier() ?: return false
-        val elementIdentifier = element.identifier() ?: return false
+        val elementIdentifier = another.identifier() ?: return false
         return myIdentifier.identity() == elementIdentifier.identity()
     }
 

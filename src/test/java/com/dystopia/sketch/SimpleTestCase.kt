@@ -1,4 +1,4 @@
-package sketch
+package com.dystopia.sketch
 
 import com.dystopia.model.serialization.sketch.SketchSerializer
 import com.dystopia.model.sketch.api.SketchElement
@@ -11,8 +11,8 @@ import org.junit.Assert
 import org.junit.Rule
 import org.junit.rules.TestName
 import org.junit.runner.RunWith
-import sketch.util.TestRunner
-import sketch.util.sort
+import com.dystopia.sketch.util.TestRunner
+import com.dystopia.sketch.util.sort
 import java.nio.file.Paths
 import java.util.*
 
