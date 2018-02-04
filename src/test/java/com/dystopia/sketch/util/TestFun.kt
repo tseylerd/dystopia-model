@@ -1,14 +1,14 @@
 package com.dystopia.sketch.util
 
-import com.dystopia.model.TransformingTraverser
-import com.dystopia.model.introspection.sketch.SketchIntrospector
-import com.dystopia.model.sketch.api.SketchElement
-import com.dystopia.model.sketch.model.SketchModel
-import com.dystopia.model.sketch.model.SketchModelBuilder
-import com.dystopia.model.vfs.Archive
-import com.dystopia.model.vfs.FileFixture
-import com.dystopia.model.vfs.FileSystemEntry
-import com.dystopia.model.vfs.VirtualDirectory
+import com.dystopia.api.TransformingTraverser
+import com.dystopia.sketch.introspection.SketchIntrospector
+import com.dystopia.sketch.api.SketchElement
+import com.dystopia.sketch.model.SketchModel
+import com.dystopia.sketch.model.SketchModelBuilder
+import com.dystopia.api.vfs.Archive
+import com.dystopia.api.vfs.FileFixture
+import com.dystopia.api.vfs.FileSystemEntry
+import com.dystopia.api.vfs.VirtualDirectory
 import kotlin.test.assertTrue
 
 fun FileSystemEntry.assertArchive(): FileSystemEntry {

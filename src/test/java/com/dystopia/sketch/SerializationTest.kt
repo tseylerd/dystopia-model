@@ -1,6 +1,6 @@
 package com.dystopia.sketch
 
-import com.dystopia.model.serialization.sketch.SketchSerializer
+import com.dystopia.sketch.serialization.SketchSerializer
 import org.junit.Test
 import com.dystopia.sketch.util.assertArchive
 import com.dystopia.sketch.util.fixture

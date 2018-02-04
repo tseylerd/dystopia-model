@@ -1,12 +1,12 @@
 package com.dystopia.sketch
 
-import com.dystopia.model.serialization.sketch.SketchSerializer
-import com.dystopia.model.sketch.api.SketchElement
-import com.dystopia.model.vfs.FileSystemEntry
-import com.dystopia.model.vfs.FileSystemWalker
-import com.dystopia.model.vfs.VirtualDirectory
-import com.dystopia.model.vfs.serialization.HardDiskSerializer
-import com.dystopia.model.vfs.serialization.StringSerializer
+import com.dystopia.sketch.serialization.SketchSerializer
+import com.dystopia.sketch.api.SketchElement
+import com.dystopia.api.vfs.FileSystemEntry
+import com.dystopia.api.vfs.FileSystemWalker
+import com.dystopia.api.vfs.VirtualDirectory
+import com.dystopia.api.vfs.serialization.HardDiskSerializer
+import com.dystopia.api.vfs.serialization.StringSerializer
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.rules.TestName

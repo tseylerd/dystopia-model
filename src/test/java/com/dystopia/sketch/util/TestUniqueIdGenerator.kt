@@ -1,6 +1,6 @@
 package com.dystopia.sketch.util
 
-import com.dystopia.model.sketch.util.UniqueIdGenerator
+import com.dystopia.sketch.util.UniqueIdGenerator
 import java.nio.file.Files
 import java.nio.file.Paths
 import kotlin.streams.toList
