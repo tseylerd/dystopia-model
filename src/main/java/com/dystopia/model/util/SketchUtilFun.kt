@@ -3,6 +3,8 @@ package com.dystopia.model.util
 import com.dystopia.model.PairTransformingTraverser
 import com.dystopia.model.sketch.api.FamilyMember
 import com.dystopia.model.sketch.api.SketchElement
+import com.dystopia.model.sketch.model.SketchModel
+import com.dystopia.model.sketch.model.SketchModelBuilder
 import java.util.*
 
 fun traverseArrays(traverser: PairTransformingTraverser<*, SketchElement>, first: Array<SketchElement>, second: Array<SketchElement>): List<SketchElement> {
@@ -37,4 +39,10 @@ interface Merger<T> {
 
 interface Differ<T> {
     fun diff(first: T, second: T): T
+}
+
+fun SketchElement.model() : SketchModel {
+    val builder = SketchModelBuilder()
+    buildModel(builder)
+    return builder.build()
 }
