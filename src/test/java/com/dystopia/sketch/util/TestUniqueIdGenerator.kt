@@ -1,11 +1,14 @@
 package com.dystopia.sketch.util
 
-import com.dystopia.sketch.util.UniqueIdGenerator
-import java.nio.file.Files
-import java.nio.file.Paths
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import kotlin.streams.toList
 
 class TestUniqueIdGenerator : UniqueIdGenerator.Genrator {
+    companion object {
+        const val IDS = "/util/uuids.txt"
+    }
+
     private val ids: List<String>
 
     private var idx = 0
@@ -15,8 +18,10 @@ class TestUniqueIdGenerator : UniqueIdGenerator.Genrator {
     }
 
     init {
-        val stringPath = javaClass.getResource("/util/uuids.txt").toURI().path
-        val path = Paths.get(stringPath)
-        ids = Files.lines(path).toList()
+        ids = BufferedReader(
+                InputStreamReader(
+                        javaClass.getResourceAsStream(IDS)
+                )
+        ).use { it.lines().toList() }
     }
 }
