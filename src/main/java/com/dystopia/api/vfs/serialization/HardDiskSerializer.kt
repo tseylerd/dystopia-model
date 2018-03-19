@@ -32,9 +32,9 @@ class HardDiskSerializer(val path: String) : FileSystemSerializer<Unit> {
 
     private fun inFs(path: String, directory: VirtualDirectory) {
         val map = HashMap<String, String>()
-        map.put("create", "true")
-        map.put("replace", "true")
-        FileSystems.newFileSystem(URI.create(path), map).use {
+        map["create"] = "true"
+        map["replace"] = "true"
+        zipFs(path).let {
             val serializer = FSSerializer(it)
             for (child in directory.children().map { it.reparent(null) }) {
                 SerializationType.of(child).serialize(child, serializer)
