@@ -15,7 +15,7 @@ abstract class ValueElement<T>(val value: T) : SketchElement, SketchAtom {
     protected abstract fun write(it: JsonWriter, value: T)
 
     override fun merge(another: SketchElement, provider: MergeProvider<SketchElement>): SketchElement {
-        return provider.zip(this, another)
+        return provider.zip(this, another, another)
     }
 
     override fun diff(another: SketchElement, provider: DiffProvider<SketchElement>): SketchElement {

@@ -21,7 +21,7 @@ open class PropertyElement(protected val key: String, val value: String) : IdBas
     }
 
     override fun merge(another: SketchElement, provider: MergeProvider<SketchElement>): SketchElement {
-        return provider.zip(this, another)
+        return provider.zip(this, another, another)
     }
 
     override fun serialize(session: SerializationSession) {
