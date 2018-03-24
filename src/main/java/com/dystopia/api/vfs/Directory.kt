@@ -2,14 +2,12 @@ package com.dystopia.api.vfs
 
 import java.util.*
 
-class Directory(parent: VirtualDirectory?, name: String, childrenFactory: (VirtualDirectory?) -> Array<FileSystemEntry>) :
-        VirtualDirectory(parent, name, childrenFactory) {
+class Directory(name: String, children: Array<FileSystemEntry>) :
+        VirtualDirectory(name, children) {
 
     override fun type() = FileType.DIRECTORY
 
     override fun toString(): String {
         return "Directory " + name() + ": " + Arrays.toString(children())
     }
-
-    override fun reparent(directory: VirtualDirectory?) = Directory(directory, name(), childrenFactory)
 }

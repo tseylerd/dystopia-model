@@ -7,7 +7,7 @@ import com.dystopia.sketch.api.IdBasedElement
 import com.dystopia.sketch.api.SketchAtom
 import com.dystopia.sketch.api.SketchElement
 
-open class PropertyElement(private val key: String, val value: String) : IdBasedElement, SketchAtom {
+open class PropertyElement(protected val key: String, val value: String) : IdBasedElement, SketchAtom {
     override fun id(): String = key
 
     override fun sameAs(another: SketchElement): Boolean = another is PropertyElement && another.key == key

@@ -1,35 +1,40 @@
 package com.dystopia.api.vfs.serialization
 
 import com.dystopia.api.vfs.*
+import java.nio.file.Paths
 
 object StringSerializer : FileSystemSerializer<String> {
     override fun serialize(entries: Array<FileSystemEntry>): String {
+        return serialize("", entries)
+    }
+
+    override fun serialize(path: String, entries: Array<FileSystemEntry>): String {
         return entries
-                .map { SerializationType.of(it).serialize(it, this) }
+                .map { SerializationType.of(it).serialize(path, it, this) }
                 .joinToString { it }
     }
 
-    override fun serializeBinaryFile(entry: BinaryFile): String {
-        return entry.indent() + "<binary content>" + "\n"
+    override fun serializeBinaryFile(path: String, entry: BinaryFile): String {
+        return indent(path) + "<binary content>" + "\n"
     }
 
-    override fun serializeTextFile(entry: TextFile): String {
-        return entry.indent() +  entry.content() + "\n"
+    override fun serializeTextFile(path: String, entry: TextFile): String {
+        return indent(path) +  entry.content() + "\n"
     }
 
-    override fun serializeDirectory(entry: Directory): String {
-        return entry.indent() + entry.path() + "\n" + serialize(entry.children())
+    override fun serializeDirectory(path: String, entry: Directory): String {
+        return indent(path) + path + "\n" + serialize(path go entry, entry.children())
     }
 
-    override fun serializeArchive(entry: Archive): String {
-        return entry.indent() + entry.path() + "\n" + serialize(entry.children())
+    override fun serializeArchive(path: String, entry: Archive): String {
+        return indent(path) + path + "\n" + serialize(path go entry, entry.children())
     }
 
-    fun FileSystemEntry.indent(): String {
+    private fun indent(path: String): String {
         val sb = StringBuilder()
-        var parent = parent()
+        var parent = Paths.get(path)
         while (parent != null) {
-            parent = parent.parent()
+            parent = parent.parent
             sb.append("     ")
         }
         return sb.toString()

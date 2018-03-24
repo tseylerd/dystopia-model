@@ -7,6 +7,6 @@ class SketchSerializer: Serializer<SketchElement> {
     override fun serialize(name: String, element: SketchElement): FileSystemEntry {
         val session = SerializationSession.ArchiveSession(name)
         element.serialize(session)
-        return session.toVfsEntry(null)
+        return session.toVfsEntry()
     }
 }

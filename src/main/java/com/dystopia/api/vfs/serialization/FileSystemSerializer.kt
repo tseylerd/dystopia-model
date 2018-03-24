@@ -2,10 +2,11 @@ package com.dystopia.api.vfs.serialization
 
 import com.dystopia.api.vfs.*
 
-interface FileSystemSerializer<T> {
+interface FileSystemSerializer<out T> {
     fun serialize(entries: Array<FileSystemEntry>): T
-    fun serializeBinaryFile(entry: BinaryFile): T
-    fun serializeTextFile(entry: TextFile): T
-    fun serializeDirectory(entry: Directory): T
-    fun serializeArchive(entry: Archive): T
+    fun serialize(path: String, entries: Array<FileSystemEntry>): T
+    fun serializeBinaryFile(path: String, entry: BinaryFile): T
+    fun serializeTextFile(path: String, entry: TextFile): T
+    fun serializeDirectory(path: String, entry: Directory): T
+    fun serializeArchive(path: String, entry: Archive): T
 }

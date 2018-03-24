@@ -1,6 +1,6 @@
 package com.dystopia.api.vfs
 
-class TextFile(parent: VirtualDirectory?, name: String, private val content: String) : VirtualFile(parent, name) {
+class TextFile(name: String, private val content: String) : VirtualFile(name) {
     override fun type(): FileType = FileType.TEXT
 
     fun content() = content
@@ -16,6 +16,4 @@ class TextFile(parent: VirtualDirectory?, name: String, private val content: Str
     override fun toString(): String {
         return "Text file ${name()}: $content"
     }
-
-    override fun reparent(directory: VirtualDirectory?) = TextFile(directory, name(), content)
 }

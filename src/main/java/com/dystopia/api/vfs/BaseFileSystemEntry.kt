@@ -1,10 +1,5 @@
 package com.dystopia.api.vfs
 
-abstract class BaseFileSystemEntry(private val parent: VirtualDirectory?, private val name: String): FileSystemEntry {
-    override fun parent() = parent
+abstract class BaseFileSystemEntry(private val name: String): FileSystemEntry {
     override fun name() = name
-    override fun path(): String {
-        val parent = parent() ?: return name
-        return parent.path() + "/" + name
-    }
 }

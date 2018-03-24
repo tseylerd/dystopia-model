@@ -9,12 +9,11 @@ interface SerializationSession {
     fun json(callback: (JsonWriter) -> Unit)
     fun plain(value: String)
     fun inFile(name: String, callback: (SerializationSession) -> Unit)
-    fun toVfsEntry(parent: VirtualDirectory?): FileSystemEntry
+    fun toVfsEntry(): FileSystemEntry
     fun inArchive(name: String, callback: (SerializationSession) -> Unit)
-    fun toVfsEntry() = toVfsEntry(null)
 
     abstract class AbstractDirectorySession(val name: String): SerializationSession {
-        internal val children: MutableList<(VirtualDirectory?) -> FileSystemEntry> = ArrayList()
+        internal val children: MutableList<FileSystemEntry> = ArrayList()
 
         override fun inDirectory(name: String, callback: (SerializationSession) -> Unit) {
             inSession(DirectorySession(name), callback)
@@ -38,21 +37,21 @@ interface SerializationSession {
 
         private fun inSession(session: SerializationSession, callback: (SerializationSession) -> Unit) {
             callback.invoke(session)
-            children.add { session.toVfsEntry(it) }
+            children.add(session.toVfsEntry())
         }
 
-        protected fun toChildren(parent: VirtualDirectory?) = children.map { it(parent) }.toTypedArray()
+        protected fun toChildren() = children.toTypedArray()
     }
 
     class DirectorySession(name: String): AbstractDirectorySession(name) {
-        override fun toVfsEntry(parent: VirtualDirectory?): FileSystemEntry {
-            return Directory(parent, name, { toChildren(it) } )
+        override fun toVfsEntry(): FileSystemEntry {
+            return Directory(name, toChildren())
         }
     }
 
     class ArchiveSession(name: String): AbstractDirectorySession(name) {
-        override fun toVfsEntry(parent: VirtualDirectory?): FileSystemEntry {
-            return Archive(parent, name, { toChildren(it) })
+        override fun toVfsEntry(): FileSystemEntry {
+            return Archive(name, toChildren())
         }
     }
 
@@ -76,8 +75,8 @@ interface SerializationSession {
             throw IllegalStateException("Can't create file inside file")
         }
 
-        override fun toVfsEntry(parent: VirtualDirectory?): FileSystemEntry {
-            return TextFile(parent, name, writer.toString())
+        override fun toVfsEntry(): FileSystemEntry {
+            return TextFile(name, writer.toString())
         }
 
         override fun inArchive(name: String, callback: (SerializationSession) -> Unit) {

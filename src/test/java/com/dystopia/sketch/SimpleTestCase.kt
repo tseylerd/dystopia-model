@@ -18,7 +18,7 @@ import java.util.*
 
 @RunWith(TestRunner::class)
 abstract class SimpleTestCase {
-    private val directoryToSave: String? = null //"/Users/jetbrains/Desktop/SketchTests/"
+    private val directoryToSave: String? = System.getProperty("sketch.test.directory.to.save")
 
     @Suppress("RedundantVisibilityModifier")
     @Rule
