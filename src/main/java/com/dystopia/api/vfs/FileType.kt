@@ -5,7 +5,10 @@ import java.nio.file.Path
 
 enum class FileType {
     ARCHIVE {
-        override fun isSuitable(path: Path) = path.toString().endsWith("zip") || path.toString().endsWith("sketch")
+        override fun isSuitable(path: Path) =
+                path.toString().endsWith("zip") ||
+                path.toString().endsWith("sketch") ||
+                path.fileName.toString().startsWith(".merge_file_") // todo remove
         override fun create(path: Path, walker: FileSystemWalker): FileSystemEntry {
             return Archive(path.fileName.toString(), walker.walkZip(path))
         }
